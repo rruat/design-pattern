@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    height: 100dvh;
+    background-color: black;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 48px var(--aside-width, 1fr) 4fr;
+    grid-template-areas:
+        "mHeader mHeader mHeader"
+        "mNav mAside mMain"
+        "mFooter mFooter mFooter";
+    padding: 1rem;
+    overflow: hidden;
+}
+
+body > * {
+    border: 1px solid #000;
+    color: #fff;
+}
+
+#mHeader, #mNav, #mAside, #mMain, #mFooter {
+    
+}
+
+#mHeader {
+    grid-area: mHeader;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+    #mLogo {
+        display: grid;
+        place-items: center;
+        background-color: #0ff;
+        color: #000;
+        width: 24px;
+        height: 24px;
+        margin-block: 0.5rem;
+        border-radius: 0.5rem;
+    }
+    #mMenu {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: start;
+        li {
+            list-style: none;
+            padding-inline: 0.5rem;
+            background-color: #000;
+            height: 24px;
+            margin-block: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            &:hover {
+                background-color: #0ff;
+                color: #000;
+            }
+        }
+    }
+}
+#mNav {
+    grid-area: mNav;
+    border-color: #0ff;
+    border-radius: 0.75rem 0 0 0.75rem;
+    ul {
+        list-style: none;
+        display: grid;
+        gap: 0.25rem;
+        padding: 0.25rem;
+        li {
+            background-color: #0ff;
+            aspect-ratio: 1/1;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            &:hover {
+                background-color: #0ff;
+                color: #000;
+            }
+        }
+    }
+}
+#mAside {
+    grid-area: mAside;
+    border-color: #0ff;
+    border-radius: 0 0.75rem 0.75rem 0;
+    margin-right: .25rem;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.aside-indicator {
+    position: absolute;
+    right: -1.00em;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    color: #0ff;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+    cursor: col-resize;
+    user-select: none;
+}
+
+#mMain {
+    grid-area: mMain;
+    display: grid;
+    grid-template-rows: 1fr var(--bottom-height, 1fr);
+    overflow: hidden;
+    gap: .25rem;
+}
+
+#s1 {
+    display: grid;
+    place-items: center;
+    border: 1px solid #0ff;
+    border-radius: 0.75rem 0.75rem 0 0;
+    position: relative;
+}
+
+#s2 {
+    display: grid;
+    place-items: center;
+    border: 1px solid #0ff;
+    border-radius: 0 0 0.75rem 0.75rem;
+}
+
+.main-indicator {
+    position: absolute;
+    bottom: -0.45em;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0ff;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    line-height: 1;
+    cursor: row-resize;
+    user-select: none;
+    z-index: 10;
+}
+
+#mFooter {
+    grid-area: mFooter;
+}
