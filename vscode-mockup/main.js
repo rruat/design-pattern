@@ -6,79 +6,81 @@ document.addEventListener('DOMContentLoaded', () => {
     const asideIndicator = document.querySelector('.aside-indicator');
     let isResizingAside = false;
 
-    asideIndicator.addEventListener('mousedown', (e) => {
-        isResizingAside = true;
-        document.body.style.cursor = 'col-resize';
-        document.body.style.userSelect = 'none';
-        e.preventDefault();
-    });
+    if (asideIndicator && aside) {
+        asideIndicator.addEventListener('mousedown', (e) => {
+            isResizingAside = true;
+            document.body.classList.add('is-resizing-col');
+            e.preventDefault();
+        });
+
+        // Duplo clique redefine a largura do aside para o padrão
+        asideIndicator.addEventListener('dblclick', () => {
+            document.body.style.removeProperty('--aside-width');
+        });
+    }
 
     // ========================================================
-    // 2. DRAG HORIZONTAL (SECTIONS) ATRAVÉS DO .main-indicator
+    // 2. DRAG DAS SEÇÕES (HORIZONTAL / VERTICAL)
     // ========================================================
     const main = document.getElementById('mMain');
     const mainIndicator = document.querySelector('.main-indicator');
     let isResizingMain = false;
 
-    mainIndicator.addEventListener('mousedown', (e) => {
-        isResizingMain = true;
-        document.body.style.cursor = main.classList.contains('is-vertical')
-            ? 'col-resize'
-            : 'row-resize';
-        document.body.style.userSelect = 'none';
-        e.preventDefault();
-    });
+    if (mainIndicator && main) {
+        mainIndicator.addEventListener('mousedown', (e) => {
+            isResizingMain = true;
+            document.body.classList.add(
+                main.classList.contains('is-vertical') ? 'is-resizing-col' : 'is-resizing-row'
+            );
+            e.preventDefault();
+        });
 
-    mainIndicator.addEventListener('dblclick', () => {
-        main.classList.toggle('is-vertical');
-        document.body.style.removeProperty('--bottom-height');
-        document.body.style.removeProperty('--left-width');
-        document.body.style.removeProperty('--right-width');
-    });
+        // Duplo clique alterna entre divisão horizontal e vertical
+        mainIndicator.addEventListener('dblclick', () => {
+            main.classList.toggle('is-vertical');
+            document.body.style.removeProperty('--bottom-height');
+            document.body.style.removeProperty('--left-width');
+        });
+    }
 
     // ========================================================
-    // MOVIMENTO DO MOUSE & SOLTURA
+    // MOVIMENTO GLOBAL DO MOUSE
     // ========================================================
     document.addEventListener('mousemove', (e) => {
-        if (isResizingAside) {
+        if (isResizingAside && aside) {
             const asideRect = aside.getBoundingClientRect();
             const newWidth = e.clientX - asideRect.left;
 
-            if (newWidth >= 40 && newWidth <= window.innerWidth - 200) {
+            if (newWidth >= 50 && newWidth <= window.innerWidth - 200) {
                 document.body.style.setProperty('--aside-width', `${newWidth}px`);
             }
         }
 
-        if (isResizingMain) {
+        if (isResizingMain && main) {
             const mainRect = main.getBoundingClientRect();
+
             if (main.classList.contains('is-vertical')) {
                 const newWidth = e.clientX - mainRect.left;
-
-                if (newWidth >= 40 && newWidth <= mainRect.width - 40) {
+                if (newWidth >= 50 && newWidth <= mainRect.width - 50) {
                     document.body.style.setProperty('--left-width', `${newWidth}px`);
-                    document.body.style.setProperty('--right-width', `${mainRect.width - newWidth}px`);
                 }
             } else {
                 const newHeight = mainRect.bottom - e.clientY;
-
-                if (newHeight >= 30 && newHeight <= mainRect.height - 40) {
+                if (newHeight >= 40 && newHeight <= mainRect.height - 40) {
                     document.body.style.setProperty('--bottom-height', `${newHeight}px`);
                 }
             }
         }
     });
 
-    document.addEventListener('mouseup', () => {
-        if (isResizingAside) {
+    const stopResizing = () => {
+        if (isResizingAside || isResizingMain) {
             isResizingAside = false;
-            document.body.style.cursor = '';
-            document.body.style.userSelect = '';
-        }
-
-        if (isResizingMain) {
             isResizingMain = false;
-            document.body.style.cursor = '';
-            document.body.style.userSelect = '';
+            document.body.classList.remove('is-resizing-col', 'is-resizing-row');
         }
-    });
+    };
+
+    document.addEventListener('mouseup', stopResizing);
+    window.addEventListener('blur', stopResizing);
 });

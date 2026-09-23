@@ -1,8 +1,12 @@
 :root {
-    --layout-padding: 0.25rem;
-    --nav-width: 48px;
-    --nav-item-height: calc(var(--nav-width) - 2px - (2 * var(--layout-padding)));
-    --section-header-height: calc(var(--nav-item-height) + (2 * var(--layout-padding)) + 1px);
+    /* Dimensões base consistentes */
+    --nav-item-size: 40px;                 /* Tamanho exato do item (40x40px) */
+    --nav-padding: 4px;                    /* Padding interno do Nav */
+    --nav-width: calc(var(--nav-item-size) + (var(--nav-padding) * 2) + 1px); /* 40 + 8 + 1 (borda) = 49px */
+    --header-height: 49px;                 /* Altura consistente dos cabeçalhos (.section-header, .aside-header) perfeitamente alinhada com o topo do nav */
+    --gap-size: 0.25rem;                   /* 4px de gap padrão */
+    
+    /* Cores do seu tema */
     --color-black: #fafafa;
     --color-white: #060606;
     --color-cyan: #dfdfdf;
@@ -26,21 +30,23 @@ body {
         "mHeader mHeader mHeader mHeader"
         "mNav mNavDivider mAside mMain"
         "mFooter mFooter mFooter mFooter";
-    padding: var(--layout-padding);
+    padding: var(--gap-size);
     overflow: hidden;
 }
 
 body > * {
-    border: 1px solid var(--color-black);
     color: var(--color-white);
 }
 
+/* ================= HEADER SUPERIOR ================= */
 #mHeader {
     grid-area: mHeader;
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: auto 1fr;
     gap: 0.5rem;
+    align-items: center;
+
     #mLogo {
         display: grid;
         place-items: center;
@@ -51,10 +57,13 @@ body > * {
         margin-block: 0.5rem;
         border-radius: 0.5rem;
     }
+
     #mMenu {
         display: grid;
         grid-auto-flow: column;
         justify-content: start;
+        gap: 0.25rem;
+
         li {
             list-style: none;
             padding-inline: 0.5rem;
@@ -65,6 +74,7 @@ body > * {
             cursor: pointer;
             display: grid;
             place-items: center;
+
             &:hover {
                 background-color: var(--color-cyan);
                 color: var(--color-black);
@@ -72,224 +82,278 @@ body > * {
         }
     }
 }
+
+/* ================= NAV (ACTIVITY BAR) ================= */
 #mNav {
     grid-area: mNav;
-    border-color: var(--color-cyan);
+    border: 1px solid var(--color-cyan);
     border-right: 0;
     border-radius: 0.75rem 0 0 0.75rem;
-    display: grid;
-    grid-template-rows: calc(var(--nav-item-height) + var(--layout-padding)) 1px 1fr;
-    align-content: start;
-    justify-items: stretch;
-    gap: var(--layout-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--nav-padding);
+    padding-inline: 0;
+    gap: var(--nav-padding);
+    width: var(--nav-width);
 
     > .nav-logo {
-        width: calc(100% - (2 * var(--layout-padding)));
-        height: var(--nav-item-height);
-        margin: var(--layout-padding);
+        width: var(--nav-item-size);
+        height: var(--nav-item-size);
         background-color: var(--color-cyan);
         color: var(--color-black);
         border-radius: 50%;
         cursor: pointer;
         display: grid;
         place-items: center;
+        flex-shrink: 0;
     }
 
     > .nav-divider {
         width: 100%;
         height: 1px;
         background-color: var(--color-cyan);
+        flex-shrink: 0;
     }
 
     ul {
         list-style: none;
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--nav-padding);
         width: 100%;
-        min-width: 0;
-        align-content: start;
-        grid-auto-rows: var(--nav-item-height);
-        gap: var(--layout-padding);
-        padding: var(--layout-padding);
+
         li {
             background-color: var(--color-cyan);
-            width: 100%;
-            height: var(--nav-item-height);
+            width: var(--nav-item-size);
+            height: var(--nav-item-size);
             border-radius: 0.5rem;
             cursor: pointer;
             display: grid;
             place-items: center;
+            flex-shrink: 0;
+
             &:hover {
                 background-color: var(--color-cyan);
                 color: var(--color-black);
             }
         }
-
     }
 }
+
 #mNavDivider {
     grid-area: mNavDivider;
     border: 0;
     background-color: var(--color-cyan);
 }
+
+/* ================= ASIDE ================= */
 #mAside {
     grid-area: mAside;
-    border-color: var(--color-cyan);
+    border: 1px solid var(--color-cyan);
     border-left: 0;
     border-radius: 0 0.75rem 0.75rem 0;
-    margin-right: .25rem;
+    margin-right: var(--gap-size);
     position: relative;
-    display: grid;
-    align-content: start;
-    justify-items: stretch;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
 }
 
 .aside-header {
     width: 100%;
-    height: var(--section-header-height);
-    padding: var(--layout-padding);
+    height: var(--header-height);
+    padding-inline: 0.75rem;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     border-bottom: 1px solid var(--color-cyan);
+    flex-shrink: 0;
 }
 
+/* ================= RESIZE INDICATOR ASIDE ================= */
 .aside-indicator {
     position: absolute;
-    left: -5px;
+    right: calc(-1 * var(--gap-size) - 2px);
     top: 0;
     bottom: 0;
-    color: var(--color-transparent);
+    width: calc(var(--gap-size) + 4px);
     cursor: col-resize;
     user-select: none;
-    z-index: 10;
-    width: 4px;
-    display: grid;
-    place-items: center;
-    font-size: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: background-color 150ms ease, box-shadow 150ms ease, color 150ms ease;
+    border-radius: 4px;
+    color: var(--color-cyan);
     font-weight: 700;
-    line-height: 1;
     letter-spacing: 0.1rem;
-    /* transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease; */
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--color-transparent);
 
-    &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(90deg);
-        color: var(--color-white);
-        font-size: 1rem;
-        white-space: nowrap;
+    .indicator-dots {
+        display: inline-block;
+        transform: rotate(90deg);
+        pointer-events: none;
+        transition: color 150ms ease;
     }
 
     &:hover {
-        color: var(--color-transparent);
         background-color: var(--color-white);
         box-shadow: 0 0 0.5rem var(--color-cyan);
+        color: var(--color-black);
 
-        &::after {
+        .indicator-dots {
             color: var(--color-black);
         }
     }
 }
 
+/* ================= MAIN (SECTIONS S1 E S2) ================= */
 #mMain {
     grid-area: mMain;
     position: relative;
     display: grid;
     grid-template-rows: 1fr var(--bottom-height, 1fr);
+    gap: var(--gap-size);
     overflow: visible;
-    gap: .25rem;
 }
 
 #mMain.is-vertical {
     grid-template-rows: 1fr;
-    grid-template-columns: var(--left-width, 1fr) var(--right-width, 1fr);
-
-    #s1,
-    #s2 {
-        min-width: 0;
-    }
+    grid-template-columns: var(--left-width, 1fr) 1fr;
 
     .main-indicator {
         top: 0;
-        left: -2px;
-        width: 4px;
+        bottom: 0;
+        left: calc(-1 * var(--gap-size) - 2px);
+        width: calc(var(--gap-size) + 4px);
         height: 100%;
         cursor: col-resize;
+
+        .indicator-dots {
+            transform: rotate(90deg);
+        }
     }
 }
 
-#s1 {
-    display: grid;
-    align-content: start;
-    justify-items: start;
+#s1, #s2 {
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--color-cyan);
     border-radius: 0.75rem;
     position: relative;
-}
-
-#s2 {
-    display: grid;
-    align-content: start;
-    justify-items: start;
-    border: 1px solid var(--color-cyan);
-    border-radius: 0.75rem;
-    position: relative;
+    overflow: visible;
+    min-height: 0;
+    min-width: 0;
 }
 
 .section-header {
     width: 100%;
-    height: var(--section-header-height);
-    padding: var(--layout-padding);
-    display: flex;
+    height: var(--header-height);
+    padding-inline: 0.75rem;
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 0.5rem;
     align-items: center;
-    justify-content: flex-start;
-    background-color: var(--color-transparent);
-    color: var(--color-white);
     border-bottom: 1px solid var(--color-cyan);
+    border-radius: 0.75rem 0.75rem 0 0;
+    flex-shrink: 0;
 }
 
-.main-indicator {
-    position: absolute;
-    top: -5px;
-    left: -2px;
-    color: var(--color-transparent);
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-    line-height: 1;
-    cursor: row-resize;
-    user-select: none;
-    z-index: 10;
-    background-color: var(--color-transparent);
-    width: calc(100% + 2px);
-    height: 4px;
+.section-icon {
+    width: 24px;
+    height: 24px;
     display: grid;
     place-items: center;
-    /* transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease; */
+    background-color: var(--color-cyan);
+    color: var(--color-black);
+    border-radius: 0.5rem;
+}
 
-    &::after {
-        content: "...";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: var(--color-white);
-        font-size: 1rem;
-        white-space: nowrap;
+.section-title {
+    min-width: 0;
+    font-weight: 500;
+}
+
+.section-close {
+    width: 24px;
+    height: 24px;
+    border: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    background-color: var(--color-transparent);
+    color: var(--color-white);
+    font: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 0.25rem;
+
+    &:hover {
+        background-color: var(--color-cyan);
+        color: var(--color-black);
+    }
+}
+
+/* ================= RESIZE INDICATOR MAIN ================= */
+.main-indicator {
+    position: absolute;
+    top: calc(-1 * var(--gap-size) - 2px);
+    left: 0;
+    width: 100%;
+    height: calc(var(--gap-size) + 4px);
+    cursor: row-resize;
+    user-select: none;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: background-color 150ms ease, box-shadow 150ms ease, color 150ms ease;
+    border-radius: 4px;
+    color: var(--color-cyan);
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--color-transparent);
+
+    .indicator-dots {
+        display: inline-block;
+        pointer-events: none;
+        transition: color 150ms ease, transform 150ms ease;
     }
 
     &:hover {
-        color: var(--color-transparent);
         background-color: var(--color-white);
         box-shadow: 0 0 0.5rem var(--color-cyan);
+        color: var(--color-black);
 
-        &::after {
+        .indicator-dots {
             color: var(--color-black);
         }
     }
 }
 
+/* ================= FOOTER ================= */
 #mFooter {
     grid-area: mFooter;
+}
+
+/* ================= ACTIVE DRAG STATES ================= */
+body.is-resizing-col,
+body.is-resizing-col * {
+    cursor: col-resize !important;
+    user-select: none !important;
+}
+
+body.is-resizing-row,
+body.is-resizing-row * {
+    cursor: row-resize !important;
+    user-select: none !important;
 }
