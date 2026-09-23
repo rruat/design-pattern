@@ -4,32 +4,81 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Design Pattern</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <header id="mHeader">
-            <div id="mLogo">%</div>
-            <ul id="mMenu">
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
+            <div class="header-left">
+                <div id="mLogo"><span class="material-symbols-rounded">terminal</span></div>
+                <ul id="mMenu">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </div>
+
+            <div class="header-center">
+                <div id="smartSearchBar" class="smart-search-bar" role="search">
+                    <span class="material-symbols-rounded search-icon">search</span>
+                    <input type="text" id="smartSearchInput" class="smart-search-input" placeholder="Buscar seções, comandos ou arquivos... (Ctrl + K)" autocomplete="off" spellcheck="false">
+                    <kbd class="search-shortcut-badge">Ctrl K</kbd>
+                </div>
+                <div id="searchDropdown" class="search-dropdown" style="display: none;">
+                    <div id="searchResults" class="search-results"></div>
+                    <div class="search-footer">
+                        <span><kbd>↑</kbd><kbd>↓</kbd> Navegar</span>
+                        <span><kbd>↵</kbd> Selecionar</span>
+                        <span><kbd>Esc</kbd> Fechar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-right" aria-hidden="true"></div>
         </header>
+
         <nav id="mNav">
+            <div class="nav-logo"><span class="material-symbols-rounded">code_blocks</span></div>
+            <div class="nav-divider" aria-hidden="true"></div>
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li id="navItemExplorer" class="nav-item is-active" title="Explorador de Seções (Item 1)">
+                    <span class="material-symbols-rounded">folder_open</span>
+                </li>
+                <li class="nav-item" title="Pesquisa">
+                    <span class="material-symbols-rounded">search</span>
+                </li>
+                <li class="nav-item" title="Configurações">
+                    <span class="material-symbols-rounded">settings</span>
+                </li>
             </ul>
         </nav>
+
+        <div id="mNavDivider" aria-hidden="true"></div>
+
         <aside id="mAside">
-            <span>a</span>
-            <span class="aside-indicator">...</span>
+            <header class="aside-header">
+                <span class="aside-title">SEÇÕES</span>
+                <div class="aside-actions">
+                    <button id="btnToggleLayout" class="aside-btn" title="Alternar layout (Empilhado / Lado a Lado)" type="button">
+                        <span class="material-symbols-rounded">view_agenda</span>
+                    </button>
+                    <button id="btnAddSection" class="aside-btn" title="Adicionar nova seção" type="button">
+                        <span class="material-symbols-rounded">add</span>
+                    </button>
+                </div>
+            </header>
+            <div id="asideSectionList" class="aside-section-list"></div>
+            <span class="aside-indicator" title="Arraste para redimensionar"><span class="indicator-dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></span></span>
         </aside>
+
         <main id="mMain">
-            <section>s1</section>
-            <section></section>
+            <!-- Renderizado dinamicamente pelo main.js -->
         </main>
+
         <footer id="mFooter">f</footer>
+
+        <script src="main.js"></script>
     </body>
 </html>
