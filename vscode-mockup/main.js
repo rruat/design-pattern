@@ -22,9 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mainIndicator.addEventListener('mousedown', (e) => {
         isResizingMain = true;
-        document.body.style.cursor = 'row-resize';
+        document.body.style.cursor = main.classList.contains('is-vertical')
+            ? 'col-resize'
+            : 'row-resize';
         document.body.style.userSelect = 'none';
         e.preventDefault();
+    });
+
+    mainIndicator.addEventListener('dblclick', () => {
+        main.classList.toggle('is-vertical');
+        document.body.style.removeProperty('--bottom-height');
+        document.body.style.removeProperty('--left-width');
+        document.body.style.removeProperty('--right-width');
     });
 
     // ========================================================
@@ -42,10 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isResizingMain) {
             const mainRect = main.getBoundingClientRect();
-            const newHeight = mainRect.bottom - e.clientY;
+            if (main.classList.contains('is-vertical')) {
+                const newWidth = e.clientX - mainRect.left;
 
-            if (newHeight >= 30 && newHeight <= mainRect.height - 40) {
-                document.body.style.setProperty('--bottom-height', `${newHeight}px`);
+                if (newWidth >= 40 && newWidth <= mainRect.width - 40) {
+                    document.body.style.setProperty('--left-width', `${newWidth}px`);
+                    document.body.style.setProperty('--right-width', `${mainRect.width - newWidth}px`);
+                }
+            } else {
+                const newHeight = mainRect.bottom - e.clientY;
+
+                if (newHeight >= 30 && newHeight <= mainRect.height - 40) {
+                    document.body.style.setProperty('--bottom-height', `${newHeight}px`);
+                }
             }
         }
     });

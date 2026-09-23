@@ -1,3 +1,14 @@
+:root {
+    --layout-padding: 0.25rem;
+    --nav-width: 48px;
+    --nav-item-height: calc(var(--nav-width) - 2px - (2 * var(--layout-padding)));
+    --section-header-height: calc(var(--nav-item-height) + (2 * var(--layout-padding)) + 1px);
+    --color-black: #fafafa;
+    --color-white: #060606;
+    --color-cyan: #dfdfdf;
+    --color-transparent: transparent;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,25 +18,21 @@
 
 body {
     height: 100dvh;
-    background-color: black;
+    background-color: var(--color-black);
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 48px var(--aside-width, 1fr) 4fr;
+    grid-template-columns: var(--nav-width) 1px var(--aside-width, 1fr) 4fr;
     grid-template-areas:
-        "mHeader mHeader mHeader"
-        "mNav mAside mMain"
-        "mFooter mFooter mFooter";
-    padding: 1rem;
+        "mHeader mHeader mHeader mHeader"
+        "mNav mNavDivider mAside mMain"
+        "mFooter mFooter mFooter mFooter";
+    padding: var(--layout-padding);
     overflow: hidden;
 }
 
 body > * {
-    border: 1px solid #000;
-    color: #fff;
-}
-
-#mHeader, #mNav, #mAside, #mMain, #mFooter {
-    
+    border: 1px solid var(--color-black);
+    color: var(--color-white);
 }
 
 #mHeader {
@@ -37,8 +44,8 @@ body > * {
     #mLogo {
         display: grid;
         place-items: center;
-        background-color: #0ff;
-        color: #000;
+        background-color: var(--color-cyan);
+        color: var(--color-black);
         width: 24px;
         height: 24px;
         margin-block: 0.5rem;
@@ -51,7 +58,7 @@ body > * {
         li {
             list-style: none;
             padding-inline: 0.5rem;
-            background-color: #000;
+            background-color: var(--color-black);
             height: 24px;
             margin-block: 0.5rem;
             border-radius: 0.5rem;
@@ -59,93 +66,228 @@ body > * {
             display: grid;
             place-items: center;
             &:hover {
-                background-color: #0ff;
-                color: #000;
+                background-color: var(--color-cyan);
+                color: var(--color-black);
             }
         }
     }
 }
 #mNav {
     grid-area: mNav;
-    border-color: #0ff;
+    border-color: var(--color-cyan);
+    border-right: 0;
     border-radius: 0.75rem 0 0 0.75rem;
+    display: grid;
+    grid-template-rows: calc(var(--nav-item-height) + var(--layout-padding)) 1px 1fr;
+    align-content: start;
+    justify-items: stretch;
+    gap: var(--layout-padding);
+
+    > .nav-logo {
+        width: calc(100% - (2 * var(--layout-padding)));
+        height: var(--nav-item-height);
+        margin: var(--layout-padding);
+        background-color: var(--color-cyan);
+        color: var(--color-black);
+        border-radius: 50%;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+    }
+
+    > .nav-divider {
+        width: 100%;
+        height: 1px;
+        background-color: var(--color-cyan);
+    }
+
     ul {
         list-style: none;
         display: grid;
-        gap: 0.25rem;
-        padding: 0.25rem;
+        width: 100%;
+        min-width: 0;
+        align-content: start;
+        grid-auto-rows: var(--nav-item-height);
+        gap: var(--layout-padding);
+        padding: var(--layout-padding);
         li {
-            background-color: #0ff;
-            aspect-ratio: 1/1;
+            background-color: var(--color-cyan);
+            width: 100%;
+            height: var(--nav-item-height);
             border-radius: 0.5rem;
             cursor: pointer;
             display: grid;
             place-items: center;
             &:hover {
-                background-color: #0ff;
-                color: #000;
+                background-color: var(--color-cyan);
+                color: var(--color-black);
             }
         }
+
     }
+}
+#mNavDivider {
+    grid-area: mNavDivider;
+    border: 0;
+    background-color: var(--color-cyan);
 }
 #mAside {
     grid-area: mAside;
-    border-color: #0ff;
+    border-color: var(--color-cyan);
+    border-left: 0;
     border-radius: 0 0.75rem 0.75rem 0;
     margin-right: .25rem;
     position: relative;
     display: grid;
-    place-items: center;
+    align-content: start;
+    justify-items: stretch;
+}
+
+.aside-header {
+    width: 100%;
+    height: var(--section-header-height);
+    padding: var(--layout-padding);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--color-cyan);
 }
 
 .aside-indicator {
     position: absolute;
-    right: -1.00em;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    color: #0ff;
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-    line-height: 1;
+    left: -5px;
+    top: 0;
+    bottom: 0;
+    color: var(--color-transparent);
     cursor: col-resize;
     user-select: none;
+    z-index: 10;
+    width: 4px;
+    display: grid;
+    place-items: center;
+    font-size: 0;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.1rem;
+    /* transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease; */
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        color: var(--color-white);
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    &:hover {
+        color: var(--color-transparent);
+        background-color: var(--color-white);
+        box-shadow: 0 0 0.5rem var(--color-cyan);
+
+        &::after {
+            color: var(--color-black);
+        }
+    }
 }
 
 #mMain {
     grid-area: mMain;
+    position: relative;
     display: grid;
     grid-template-rows: 1fr var(--bottom-height, 1fr);
-    overflow: hidden;
+    overflow: visible;
     gap: .25rem;
+}
+
+#mMain.is-vertical {
+    grid-template-rows: 1fr;
+    grid-template-columns: var(--left-width, 1fr) var(--right-width, 1fr);
+
+    #s1,
+    #s2 {
+        min-width: 0;
+    }
+
+    .main-indicator {
+        top: 0;
+        left: -2px;
+        width: 4px;
+        height: 100%;
+        cursor: col-resize;
+    }
 }
 
 #s1 {
     display: grid;
-    place-items: center;
-    border: 1px solid #0ff;
-    border-radius: 0.75rem 0.75rem 0 0;
+    align-content: start;
+    justify-items: start;
+    border: 1px solid var(--color-cyan);
+    border-radius: 0.75rem;
     position: relative;
 }
 
 #s2 {
     display: grid;
-    place-items: center;
-    border: 1px solid #0ff;
-    border-radius: 0 0 0.75rem 0.75rem;
+    align-content: start;
+    justify-items: start;
+    border: 1px solid var(--color-cyan);
+    border-radius: 0.75rem;
+    position: relative;
+}
+
+.section-header {
+    width: 100%;
+    height: var(--section-header-height);
+    padding: var(--layout-padding);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--color-transparent);
+    color: var(--color-white);
+    border-bottom: 1px solid var(--color-cyan);
 }
 
 .main-indicator {
     position: absolute;
-    bottom: -0.45em;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #0ff;
+    top: -5px;
+    left: -2px;
+    color: var(--color-transparent);
     font-weight: 700;
     letter-spacing: 0.1rem;
     line-height: 1;
     cursor: row-resize;
     user-select: none;
     z-index: 10;
+    background-color: var(--color-transparent);
+    width: calc(100% + 2px);
+    height: 4px;
+    display: grid;
+    place-items: center;
+    /* transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease; */
+
+    &::after {
+        content: "...";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--color-white);
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    &:hover {
+        color: var(--color-transparent);
+        background-color: var(--color-white);
+        box-shadow: 0 0 0.5rem var(--color-cyan);
+
+        &::after {
+            color: var(--color-black);
+        }
+    }
 }
 
 #mFooter {
