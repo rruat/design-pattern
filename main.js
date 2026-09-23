@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnToggleLayout = document.getElementById('btnToggleLayout');
     const asideIndicator = document.querySelector('.aside-indicator');
     const main = document.getElementById('mMain');
+    const btnCloseAsideMobile = document.getElementById('btnCloseAsideMobile');
 
     // ========================================================
     // 1. RENDERIZAÇÃO DO ASIDE (LISTA DE SEÇÕES)
@@ -191,9 +192,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!sectionSizes.has(id)) {
                 sectionSizes.set(id, 1);
             }
+            renderMain();
+            renderAside();
+            setTimeout(() => {
+                focusSection(id);
+            }, 60);
+        } else {
+            focusSection(id);
         }
-        renderMain();
-        renderAside();
     }
 
     function closeSection(id) {
@@ -230,8 +236,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function focusSection(id) {
         const el = document.getElementById(id);
         if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-            el.style.boxShadow = '0 0 1rem var(--color-cyan)';
+            if (window.innerWidth <= 768 && main) {
+                main.scrollTo({
+                    left: el.offsetLeft - 16,
+                    behavior: 'smooth'
+                });
+            } else {
+                el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+            }
+            el.style.boxShadow = '0 0 1rem var(--color-outline-focus, #d7d7d9)';
             setTimeout(() => {
                 el.style.boxShadow = '';
             }, 600);
@@ -399,11 +412,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // Item 1 do Nav: ao ser clicado, ativa e gera os itens no aside
     if (navItemExplorer) {
         navItemExplorer.addEventListener('click', () => {
-            document.querySelectorAll('#mNav ul li').forEach((li) => li.classList.remove('is-active'));
-            navItemExplorer.classList.add('is-active');
-
-            // Garante que o aside está visível e atualizado
             renderAside();
+
+            // No mobile: alterna abertura/fechamento do Aside (Push Sheet em fluxo)
+            if (window.innerWidth <= 768 && aside) {
+                const willOpen = !aside.classList.contains('is-open-mobile');
+                aside.classList.toggle('is-open-mobile');
+
+                document.querySelectorAll('#mNav ul li').forEach((li) => li.classList.remove('is-active'));
+                if (willOpen) {
+                    navItemExplorer.classList.add('is-active');
+                }
+            } else {
+                document.querySelectorAll('#mNav ul li').forEach((li) => li.classList.remove('is-active'));
+                navItemExplorer.classList.add('is-active');
+            }
+        });
+    }
+
+    // Botão de recolher o Aside no Mobile
+    if (btnCloseAsideMobile && aside) {
+        btnCloseAsideMobile.addEventListener('click', () => {
+            aside.classList.remove('is-open-mobile');
+            if (navItemExplorer) {
+                navItemExplorer.classList.remove('is-active');
+            }
+        });
+    }
+
+    // Item de Pesquisa na barra inferior do mobile: foca a barra inteligente
+    const navItemSearch = document.querySelector('#mNav ul li[title="Pesquisa"]');
+    if (navItemSearch) {
+        navItemSearch.addEventListener('click', () => {
+            if (window.innerWidth <= 768 && aside) {
+                aside.classList.remove('is-open-mobile');
+            }
+            document.querySelectorAll('#mNav ul li').forEach((li) => li.classList.remove('is-active'));
+            navItemSearch.classList.add('is-active');
+            const input = document.getElementById('smartSearchInput');
+            if (input) {
+                input.focus();
+            }
         });
     }
 
@@ -739,6 +788,66 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // ========================================================
+    // 10. CONTROLE DO GESTO (SWIPE ENTRE AS VIEWS NO MOBILE)
+    // ========================================================
+    let startX = 0;
+    let startScroll = 0;
+
+    if (main) {
+        main.addEventListener(
+            'touchstart',
+            (event) => {
+                if (window.innerWidth > 768) return;
+                startX = event.touches[0].clientX;
+                startScroll = main.scrollLeft;
+            },
+            { passive: true }
+        );
+
+        main.addEventListener(
+            'touchend',
+            (event) => {
+                if (window.innerWidth > 768) return;
+
+                const endX = event.changedTouches[0].clientX;
+                const distance = endX - startX;
+
+                // Ignora movimentos muito pequenos
+                if (Math.abs(distance) < 30) {
+                    return;
+                }
+
+                const views = main.querySelectorAll('.main-section');
+                if (views.length === 0) return;
+
+                const viewWidth = views[0].offsetWidth;
+                const gap = 8;
+                const currentIndex = Math.round(
+                    (startScroll + 16) / (viewWidth + gap)
+                );
+
+                let nextIndex = currentIndex;
+
+                // Arrastou para a esquerda (avança 1 view)
+                if (distance < 0) {
+                    nextIndex = Math.min(currentIndex + 1, views.length - 1);
+                }
+                // Arrastou para a direita (recua 1 view)
+                else {
+                    nextIndex = Math.max(currentIndex - 1, 0);
+                }
+
+                // Move exatamente uma view
+                main.scrollTo({
+                    left: views[nextIndex].offsetLeft - 16,
+                    behavior: 'smooth'
+                });
+            },
+            { passive: true }
+        );
+    }
 
     // Inicialização
     renderAside();
