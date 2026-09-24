@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             franquia: 'R$ 1.200,00',
             vigenciaInicio: '15/01/2026',
             vigenciaFim: '15/01/2027',
-            status: 'doing', // 'todo' (Em Análise), 'doing' (Ativa / Vigente), 'done' (Renovada)
+            status: 'doing',
             tag: 'Auto',
             priority: 'Alta',
             priorityColor: '#ef4444',
@@ -132,6 +132,604 @@ document.addEventListener('DOMContentLoaded', () => {
             coberturas: 'Consultas, Exames, Internações Clínicas/Cirúrgicas, Obstetrícia',
             sinistros: 'Nenhum sinistro registrado',
             observacoes: 'Proposta em análise de redução de carências.'
+        },
+        {
+            id: 'pol-6',
+            apolice: 'AP-2024-3310',
+            cliente: 'Juliana Paes Silva',
+            cpf: '678.901.234-55',
+            email: 'juliana.silva@email.com',
+            telefone: '(11) 98112-9988',
+            title: 'Plano de Saúde Família - Juliana Paes',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Unimed',
+            valor: 'R$ 2.640,00',
+            franquia: 'Sem Coparticipação',
+            vigenciaInicio: '10/01/2026',
+            vigenciaFim: '10/01/2027',
+            status: 'doing',
+            tag: 'Saúde',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'JP',
+            date: '10 Jan 2026',
+            desc: 'Unimed Nacional Estilo. Acomodação em apartamento privativo para titular e 2 dependentes.',
+            endereco: 'Alameda Santos, 2200, Apto 112 - Cerqueira César, São Paulo - SP',
+            coberturas: 'Hospitalar + Obstetrícia, Telemedicina 24h, Livre escolha com reembolso',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Inclusão de dependente recém-nascido deferida com sucesso.'
+        },
+        {
+            id: 'pol-7',
+            apolice: 'AP-2024-4402',
+            cliente: 'Fernando Castilho',
+            cpf: '789.012.345-66',
+            email: 'fernando.castilho@email.com',
+            telefone: '(11) 97345-6789',
+            title: 'Apólice Auto Híbrido - Fernando Castilho',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'Bradesco Seguros',
+            valor: 'R$ 5.320,00',
+            franquia: 'R$ 1.800,00',
+            vigenciaInicio: '18/02/2026',
+            vigenciaFim: '18/02/2027',
+            status: 'done',
+            tag: 'Auto',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'FC',
+            date: '18 Fev 2026',
+            desc: 'Honda Civic Híbrido e:HEV 2024. Cobertura completa para bateria e componentes elétricos.',
+            endereco: 'Rua Pedroso Alvarenga, 780 - Itaim Bibi, São Paulo - SP',
+            coberturas: 'Compreensiva 100% FIPE, Carro Reserva Executivo (30 dias), Vidros Blindados',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Renovação sem sinistro com bônus classe 10.'
+        },
+        {
+            id: 'pol-8',
+            apolice: 'AP-2024-7789',
+            cliente: 'Patrícia Fagundes',
+            cpf: '890.123.456-77',
+            email: 'patricia.fagundes@email.com',
+            telefone: '(11) 96456-7890',
+            title: 'Plano Smart 500 - Patrícia Fagundes',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Notredame Intermédica',
+            valor: 'R$ 1.890,00',
+            franquia: 'Coparticipação 15%',
+            vigenciaInicio: '05/03/2026',
+            vigenciaFim: '05/03/2027',
+            status: 'doing',
+            tag: 'Saúde',
+            priority: 'Baixa',
+            priorityColor: '#10b981',
+            assignee: 'PF',
+            date: '05 Mar 2026',
+            desc: 'Linha Smart 500 com ampla rede própria NotreLife e hospitais credenciados na Grande SP.',
+            endereco: 'Rua Vergueiro, 3100 - Vila Mariana, São Paulo - SP',
+            coberturas: 'Ambulatorial e Hospitalar com Obstetrícia, Centro de Oncologia',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Migração de plano individual para corporativo em andamento.'
+        },
+        {
+            id: 'pol-9',
+            apolice: 'AP-2024-2254',
+            cliente: 'Lucas Albuquerque',
+            cpf: '901.234.567-88',
+            email: 'lucas.albuquerque@email.com',
+            telefone: '(81) 98765-1234',
+            title: 'Apólice SUV - Lucas Albuquerque',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'Azul Seguros',
+            valor: 'R$ 3.980,00',
+            franquia: 'R$ 1.100,00',
+            vigenciaInicio: '12/04/2026',
+            vigenciaFim: '12/04/2027',
+            status: 'todo',
+            tag: 'Auto',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'LA',
+            date: '12 Abr 2026',
+            desc: 'Jeep Compass Longitude 2023. Uso misto comercial e particular.',
+            endereco: 'Av. Boa Viagem, 2400 - Boa Viagem, Recife - PE',
+            coberturas: 'Compreensiva FIPE 100%, Danos Materiais R$ 200k, Guincho ilimitado',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Pendente envio de comprovante de residência atualizado.'
+        },
+        {
+            id: 'pol-10',
+            apolice: 'AP-2024-8119',
+            cliente: 'Rodrigo Santoro Mendes',
+            cpf: '012.345.678-99',
+            email: 'rodrigo.santoro@email.com',
+            telefone: '(11) 99123-4567',
+            title: 'Apólice Residencial Jardins - Rodrigo',
+            tipoSeguro: 'Seguro Residencial',
+            seguradora: 'Tokio Marine',
+            valor: 'R$ 1.650,00',
+            franquia: 'R$ 600,00',
+            vigenciaInicio: '01/01/2026',
+            vigenciaFim: '01/01/2027',
+            status: 'doing',
+            tag: 'Residencial',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'RS',
+            date: '01 Jan 2026',
+            desc: 'Apartamento de alto padrão nos Jardins. Cobertura para obras de arte e joias.',
+            endereco: 'Rua Haddock Lobo, 1307 - Cerqueira César, São Paulo - SP',
+            coberturas: 'Incêndio (R$ 1.5M), Roubo de Bens (R$ 150k), Danos Elétricos e Hidráulicos',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Apólice contratada com cláusula especial de joias e obras de arte.'
+        },
+        {
+            id: 'pol-11',
+            apolice: 'AP-2024-9043',
+            cliente: 'Camila Queiroz Lima',
+            cpf: '112.233.445-56',
+            email: 'camila.queiroz@email.com',
+            telefone: '(21) 98234-5678',
+            title: 'Top Nacional Plus - Camila Queiroz',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Bradesco Saúde',
+            valor: 'R$ 4.120,00',
+            franquia: 'Sem Coparticipação',
+            vigenciaInicio: '15/02/2026',
+            vigenciaFim: '15/02/2027',
+            status: 'done',
+            tag: 'Saúde',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'CQ',
+            date: '15 Fev 2026',
+            desc: 'Plano Top Nacional com reembolso ampliado para consultas de especialistas e hospitais Albert Einstein e Sírio-Libanês.',
+            endereco: 'Av. Vieira Souto, 500 - Ipanema, Rio de Janeiro - RJ',
+            coberturas: 'Internação em Quarto Privativo, Concierge hospitalar, Reembolso 100% tabela',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Renovação anual com acréscimo de seguro viagem internacional.'
+        },
+        {
+            id: 'pol-12',
+            apolice: 'AP-2024-3450',
+            cliente: 'Gabriel Nogueira',
+            cpf: '223.344.556-67',
+            email: 'gabriel.nogueira@email.com',
+            telefone: '(31) 98456-7890',
+            title: 'Unimed Odonto Executivo - Gabriel Nogueira',
+            tipoSeguro: 'Plano Odontológico',
+            seguradora: 'Unimed',
+            valor: 'R$ 480,00',
+            franquia: 'Isento',
+            vigenciaInicio: '01/03/2026',
+            vigenciaFim: '01/03/2027',
+            status: 'doing',
+            tag: 'Odonto',
+            priority: 'Baixa',
+            priorityColor: '#10b981',
+            assignee: 'GN',
+            date: '01 Mar 2026',
+            desc: 'Plano odontológico com cobertura para ortodontia, clareamento e próteses.',
+            endereco: 'Av. Afonso Pena, 3200 - Funcionários, Belo Horizonte - MG',
+            coberturas: 'Urgências 24h, Próteses, Ortodontia completa, Documentação radiológica',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Contrato corporativo estendido para familiares de primeiro grau.'
+        },
+        {
+            id: 'pol-13',
+            apolice: 'AP-2024-7128',
+            cliente: 'Bianca Toledo',
+            cpf: '334.455.667-78',
+            email: 'bianca.toledo@email.com',
+            telefone: '(41) 99112-3344',
+            title: 'SulAmérica Especial 100 - Bianca Toledo',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'SulAmérica',
+            valor: 'R$ 3.490,00',
+            franquia: 'Coparticipação Parcial',
+            vigenciaInicio: '25/04/2026',
+            vigenciaFim: '25/04/2027',
+            status: 'todo',
+            tag: 'Saúde',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'BT',
+            date: '25 Abr 2026',
+            desc: 'Plano Especial 100 com direito a hospitais de referência em Curitiba e rede D’Or.',
+            endereco: 'Rua Comendador Araújo, 400 - Batel, Curitiba - PR',
+            coberturas: 'Exames de Alta Complexidade, Fisioterapia ilimitada, Parto humanizado',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Proposta aguardando análise de Declaração de Saúde.'
+        },
+        {
+            id: 'pol-14',
+            apolice: 'AP-2024-5581',
+            cliente: 'Marcelo D\'Ávila',
+            cpf: '445.566.778-89',
+            email: 'marcelo.davila@email.com',
+            telefone: '(11) 97788-9900',
+            title: 'Apólice Auto Premium - Marcelo D\'Ávila',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'Mapfre Seguros',
+            valor: 'R$ 8.750,00',
+            franquia: 'R$ 3.500,00',
+            vigenciaInicio: '10/02/2026',
+            vigenciaFim: '10/02/2027',
+            status: 'doing',
+            tag: 'Auto',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'MD',
+            date: '10 Fev 2026',
+            desc: 'BMW 320i M Sport 2024. Cobertura especial para rodas, pneus e retrovisores fotocrômicos.',
+            endereco: 'Rua Funchal, 200 - Vila Olímpia, São Paulo - SP',
+            coberturas: 'FIPE 100% + Danos Corporais R$ 1.000.000 + Proteção completa de vidros',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Rastreador via satélite homologado instalado e certificado.'
+        },
+        {
+            id: 'pol-15',
+            apolice: 'AP-2024-1902',
+            cliente: 'Vanessa Guimarães',
+            cpf: '556.677.889-90',
+            email: 'vanessa.guimaraes@email.com',
+            telefone: '(12) 98877-6655',
+            title: 'Apólice Casa de Praia - Vanessa',
+            tipoSeguro: 'Seguro Residencial',
+            seguradora: 'Porto Seguro',
+            valor: 'R$ 2.300,00',
+            franquia: 'R$ 800,00',
+            vigenciaInicio: '15/01/2026',
+            vigenciaFim: '15/01/2027',
+            status: 'done',
+            tag: 'Residencial',
+            priority: 'Baixa',
+            priorityColor: '#10b981',
+            assignee: 'VG',
+            date: '15 Jan 2026',
+            desc: 'Casa de veraneio em Ubatuba. Cobertura específica para maresia, vendaval e alagamento.',
+            endereco: 'Rua das Gaivotas, 120 - Praia Grande, Ubatuba - SP',
+            coberturas: 'Incêndio (R$ 1M), Vendaval/Granizo (R$ 100k), Desmoronamento, Roubo',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Instalação de câmeras e alarme monitorado 24h pela Porto Seguro.'
+        },
+        {
+            id: 'pol-16',
+            apolice: 'AP-2024-6334',
+            cliente: 'Thiago Sampaio',
+            cpf: '667.788.990-01',
+            email: 'thiago.sampaio@email.com',
+            telefone: '(51) 99345-6789',
+            title: 'Apólice Clínica Odonto - Thiago Sampaio',
+            tipoSeguro: 'Seguro Empresarial',
+            seguradora: 'Sompo Seguros',
+            valor: 'R$ 5.100,00',
+            franquia: 'R$ 2.000,00',
+            vigenciaInicio: '01/04/2026',
+            vigenciaFim: '01/04/2027',
+            status: 'doing',
+            tag: 'Empresarial',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'TS',
+            date: '01 Abr 2026',
+            desc: 'Consultório e clínica odontológica. Proteção para cadeiras odontológicas, autoclaves e tomógrafo.',
+            endereco: 'Av. Carlos Gomes, 1400 - Bela Vista, Porto Alegre - RS',
+            coberturas: 'Equipamentos Médicos/Odontológicos (R$ 400k), Responsabilidade Civil Profissional',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Seguro renovado pelo terceiro ano consecutivo com franquia reduzida.'
+        },
+        {
+            id: 'pol-17',
+            apolice: 'AP-2024-4198',
+            cliente: 'Renata Vasconcellos',
+            cpf: '778.899.001-12',
+            email: 'renata.vasconcellos@email.com',
+            telefone: '(21) 99456-7890',
+            title: 'Amil One S2500 Black - Renata Vasconcellos',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Amil Saúde',
+            valor: 'R$ 7.800,00',
+            franquia: 'Sem Coparticipação',
+            vigenciaInicio: '20/01/2026',
+            vigenciaFim: '20/01/2027',
+            status: 'done',
+            tag: 'Saúde',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'RV',
+            date: '20 Jan 2026',
+            desc: 'Linha Premium Amil One. Cobertura internacional, resgate aéreo aeromédico e check-up executivo anual no Einstein.',
+            endereco: 'Rua Rainha Elizabeth, 340 - Copacabana, Rio de Janeiro - RJ',
+            coberturas: 'Internação em Suíte, Cobertura Internacional US$ 300k, Reembolso VIP em até 24h',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Contrato categoria Black com motorista para exames e coleta domiciliar.'
+        },
+        {
+            id: 'pol-18',
+            apolice: 'AP-2024-8271',
+            cliente: 'Diego Hipólito',
+            cpf: '889.900.112-23',
+            email: 'diego.hipolito@email.com',
+            telefone: '(11) 98567-8901',
+            title: 'Vida Atleta & Acidentes - Diego Hipólito',
+            tipoSeguro: 'Seguro de Vida',
+            seguradora: 'Zurich Seguros',
+            valor: 'R$ 1.780,00',
+            franquia: 'Isento',
+            vigenciaInicio: '15/03/2026',
+            vigenciaFim: '15/03/2027',
+            status: 'todo',
+            tag: 'Vida',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'DH',
+            date: '15 Mar 2026',
+            desc: 'Seguro de vida e acidentes com cláusula para atletas e profissionais de atividade física.',
+            endereco: 'Rua Harmonia, 520 - Vila Madalena, São Paulo - SP',
+            coberturas: 'Morte Acidental R$ 800k, Diárias de Incapacidade Temporária (DIT), Cirurgias',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Proposta com questionário médico complementar em análise.'
+        },
+        {
+            id: 'pol-19',
+            apolice: 'AP-2024-2890',
+            cliente: 'Larissa Manoela Costa',
+            cpf: '990.011.223-34',
+            email: 'larissa.costa@email.com',
+            telefone: '(11) 97678-9012',
+            title: 'Apólice SUV Taos - Larissa Manoela',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'Liberty Seguros',
+            valor: 'R$ 4.200,00',
+            franquia: 'R$ 1.350,00',
+            vigenciaInicio: '01/02/2026',
+            vigenciaFim: '01/02/2027',
+            status: 'doing',
+            tag: 'Auto',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'LC',
+            date: '01 Fev 2026',
+            desc: 'Volkswagen Taos Highline 2024. Cobertura para kit multimídia, retrovisores e vidros.',
+            endereco: 'Av. Ibirapuera, 2030 - Moema, São Paulo - SP',
+            coberturas: 'FIPE 100%, Danos Morais R$ 100k, Carro Reserva Sedan Médio 15 dias',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Apólice emitida com assistência 24h sem limite de quilometragem.'
+        },
+        {
+            id: 'pol-20',
+            apolice: 'AP-2024-9556',
+            cliente: 'Felipe Bronze Alcantara',
+            cpf: '001.122.334-45',
+            email: 'felipe.bronze@email.com',
+            telefone: '(21) 99789-0123',
+            title: 'Apólice Restaurante - Felipe Bronze',
+            tipoSeguro: 'Seguro Empresarial',
+            seguradora: 'Bradesco Seguros',
+            valor: 'R$ 7.400,00',
+            franquia: 'R$ 2.800,00',
+            vigenciaInicio: '10/01/2026',
+            vigenciaFim: '10/01/2027',
+            status: 'done',
+            tag: 'Empresarial',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'FA',
+            date: '10 Jan 2026',
+            desc: 'Restaurante contemporâneo com cozinha industrial, fornos combinados e câmara fria.',
+            endereco: 'Rua Dias Ferreira, 600 - Leblon, Rio de Janeiro - RJ',
+            coberturas: 'Incêndio R$ 3M, Perda de Alimentos Refrigerados R$ 80k, Responsabilidade Civil Bar/Restaurante',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Vistoria anual de exaustores e extintores regularizada.'
+        },
+        {
+            id: 'pol-21',
+            apolice: 'AP-2024-3112',
+            cliente: 'Amanda Peçanha',
+            cpf: '123.321.456-99',
+            email: 'amanda.pecanha@email.com',
+            telefone: '(71) 98899-0011',
+            title: 'Unimed Flex Regional - Amanda Peçanha',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Unimed',
+            valor: 'R$ 1.950,00',
+            franquia: 'Coparticipação 20%',
+            vigenciaInicio: '01/05/2026',
+            vigenciaFim: '01/05/2027',
+            status: 'todo',
+            tag: 'Saúde',
+            priority: 'Baixa',
+            priorityColor: '#10b981',
+            assignee: 'AP',
+            date: '01 Mai 2026',
+            desc: 'Plano regional com cobertura em Salvador e região metropolitana, enfermaria coletiva.',
+            endereco: 'Av. Tancredo Neves, 1200 - Caminho das Árvores, Salvador - BA',
+            coberturas: 'Consultas eletivas e exames laboratoriais, Pronto-atendimento Unimed',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Aguardando validação da portabilidade de carências.'
+        },
+        {
+            id: 'pol-22',
+            apolice: 'AP-2024-6744',
+            cliente: 'Bruno Gagliasso Rezende',
+            cpf: '234.432.567-00',
+            email: 'bruno.rezende@email.com',
+            telefone: '(21) 98788-1122',
+            title: 'Apólice Volvo Híbrido - Bruno Rezende',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'HDI Seguros',
+            valor: 'R$ 9.100,00',
+            franquia: 'R$ 3.800,00',
+            vigenciaInicio: '15/02/2026',
+            vigenciaFim: '15/02/2027',
+            status: 'doing',
+            tag: 'Auto',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'BR',
+            date: '15 Fev 2026',
+            desc: 'Volvo XC60 Recharge Plug-in 2024. Cobertura para carregador wallbox e cabos de recarga.',
+            endereco: 'Estrada do Joá, 1500 - Joá, Rio de Janeiro - RJ',
+            coberturas: 'FIPE 100% Valor de Novo, Carregador Portátil e Fixo, Danos Materiais R$ 500k',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Contrato inclui serviço de reboque com plataforma rebaixada especial.'
+        },
+        {
+            id: 'pol-23',
+            apolice: 'AP-2024-5089',
+            cliente: 'Luciana Gimenez Morad',
+            cpf: '345.543.678-11',
+            email: 'luciana.morad@email.com',
+            telefone: '(11) 99899-2233',
+            title: 'Omint C32 Hospitalar - Luciana Morad',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Omint Saúde',
+            valor: 'R$ 12.500,00',
+            franquia: 'Sem Coparticipação',
+            vigenciaInicio: '01/01/2026',
+            vigenciaFim: '01/01/2027',
+            status: 'doing',
+            tag: 'Saúde',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'LM',
+            date: '01 Jan 2026',
+            desc: 'Plano Omint C32 com padrão internacional de hotelaria hospitalar, vacinas e reembolso de alta tabela.',
+            endereco: 'Rua Groenlândia, 900 - Jardim América, São Paulo - SP',
+            coberturas: 'Cirurgias Robóticas, Parto sem carência, Reembolso odontológico e médico em até 48h',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Cliente VIP corporativo com concierge médico individual.'
+        },
+        {
+            id: 'pol-24',
+            apolice: 'AP-2024-1423',
+            cliente: 'Gustavo Kuerten Becker',
+            cpf: '456.654.789-22',
+            email: 'gustavo.becker@email.com',
+            telefone: '(48) 99122-3344',
+            title: 'Care Plus Master I Max - Gustavo Becker',
+            tipoSeguro: 'Plano de Saúde',
+            seguradora: 'Care Plus',
+            valor: 'R$ 8.900,00',
+            franquia: 'Sem Coparticipação',
+            vigenciaInicio: '20/03/2026',
+            vigenciaFim: '20/03/2027',
+            status: 'done',
+            tag: 'Saúde',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'GB',
+            date: '20 Mar 2026',
+            desc: 'Plano Care Plus com cobertura global, telemedicina internacional e gestão preventiva de saúde.',
+            endereco: 'Av. Beira Mar Norte, 3100 - Centro, Florianópolis - SC',
+            coberturas: 'Hospitais Sírio-Libanês e Einstein, Check-up anual, Reembolso no exterior',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Renovado com inclusão de tratamento fisioterápico especializado.'
+        },
+        {
+            id: 'pol-25',
+            apolice: 'AP-2024-7631',
+            cliente: 'Letícia Spiller Fontes',
+            cpf: '567.765.890-33',
+            email: 'leticia.fontes@email.com',
+            telefone: '(21) 98122-4455',
+            title: 'Porto Vida Mais Mulher - Letícia Fontes',
+            tipoSeguro: 'Seguro de Vida',
+            seguradora: 'Porto Seguro',
+            valor: 'R$ 2.450,00',
+            franquia: 'Isento',
+            vigenciaInicio: '10/04/2026',
+            vigenciaFim: '10/04/2027',
+            status: 'todo',
+            tag: 'Vida',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'LF',
+            date: '10 Abr 2026',
+            desc: 'Seguro de vida voltado para mulheres com cobertura diagnóstica de câncer de mama e ginecológico.',
+            endereco: 'Rua São Clemente, 280 - Botafogo, Rio de Janeiro - RJ',
+            coberturas: 'Capital Segurado R$ 1.2M, Diagnóstico de Câncer R$ 150k, Segunda Opinião Médica Internacional',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Aguardando confirmação do pagamento da primeira parcela.'
+        },
+        {
+            id: 'pol-26',
+            apolice: 'AP-2024-4820',
+            cliente: 'Danielle Winits Barreto',
+            cpf: '678.876.901-44',
+            email: 'danielle.barreto@email.com',
+            telefone: '(11) 97233-5566',
+            title: 'Apólice Porsche Macan - Danielle Barreto',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'Tokio Marine',
+            valor: 'R$ 14.800,00',
+            franquia: 'R$ 5.500,00',
+            vigenciaInicio: '01/03/2026',
+            vigenciaFim: '01/03/2027',
+            status: 'doing',
+            tag: 'Auto',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'DB',
+            date: '01 Mar 2026',
+            desc: 'Porsche Macan GTS 2024. Cobertura de pintura cerâmica, rodas aro 21 e teto panorâmico.',
+            endereco: 'Rua Bela Cintra, 1800 - Consolação, São Paulo - SP',
+            coberturas: 'FIPE 100% Reposição zero km por 1 ano, Danos Morais R$ 300k, Carro reserva SUV Luxo',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Instalação de localizador homologado e laudo cautelar aprovado.'
+        },
+        {
+            id: 'pol-27',
+            apolice: 'AP-2024-8501',
+            cliente: 'Caio Castro Castanheira',
+            cpf: '789.987.012-55',
+            email: 'caio.castanheira@email.com',
+            telefone: '(11) 98344-6677',
+            title: 'Apólice Moto Ducati - Caio Castanheira',
+            tipoSeguro: 'Seguro Automóvel',
+            seguradora: 'Allianz Seguros',
+            valor: 'R$ 6.300,00',
+            franquia: 'R$ 3.200,00',
+            vigenciaInicio: '15/01/2026',
+            vigenciaFim: '15/01/2027',
+            status: 'done',
+            tag: 'Auto',
+            priority: 'Alta',
+            priorityColor: '#ef4444',
+            assignee: 'CC',
+            date: '15 Jan 2026',
+            desc: 'Ducati Panigale V4 S. Cobertura especial para macacão, capacete e equipamentos de segurança.',
+            endereco: 'Av. Brigadeiro Faria Lima, 3900 - Itaim Bibi, São Paulo - SP',
+            coberturas: 'Roubo/Furto, Colisão, Acessórios e Indumentária do Piloto (R$ 25.000,00)',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Piloto experiente com histórico de zero sinistros em apólices de moto.'
+        },
+        {
+            id: 'pol-28',
+            apolice: 'AP-2024-3990',
+            cliente: 'Taís Araújo Ramos',
+            cpf: '890.098.123-66',
+            email: 'tais.ramos@email.com',
+            telefone: '(21) 99122-7788',
+            title: 'Cobertura Duplex Leblon - Taís Ramos',
+            tipoSeguro: 'Seguro Residencial',
+            seguradora: 'SulAmérica',
+            valor: 'R$ 4.500,00',
+            franquia: 'R$ 1.500,00',
+            vigenciaInicio: '01/02/2026',
+            vigenciaFim: '01/02/2027',
+            status: 'doing',
+            tag: 'Residencial',
+            priority: 'Média',
+            priorityColor: '#f59e0b',
+            assignee: 'TR',
+            date: '01 Fev 2026',
+            desc: 'Cobertura duplex com piscina e deck no Leblon. Proteção ampla para equipamentos, vazamentos e impacto de veículos/aeronaves.',
+            endereco: 'Av. Delfim Moreira, 800 - Leblon, Rio de Janeiro - RJ',
+            coberturas: 'Incêndio (R$ 3M), Vazamento de Tubulações (R$ 100k), Danos a Terceiros (R$ 300k)',
+            sinistros: 'Nenhum sinistro registrado',
+            observacoes: 'Apólice conta com serviços emergenciais ilimitados de eletricista, encanador e chaveiro.'
         }
     ];
 
@@ -243,13 +841,79 @@ document.addEventListener('DOMContentLoaded', () => {
         return new RegExp(`(${pattern})`, 'gi');
     }
 
+    const SEARCH_STOPWORDS = new Set(['de', 'do', 'da', 'dos', 'das', 'o', 'a', 'os', 'as', 'e', 'em', 'no', 'na', 'nos', 'nas', 'por', 'com', 'x', 'vs']);
+
+    function extractSearchTokens(queryStr) {
+        const norm = normalizeStr(queryStr);
+        if (!norm) return [];
+        return norm
+            .split(/[\s,;:+/|\\-]+/)
+            .filter((tok) => tok.length > 0 && !SEARCH_STOPWORDS.has(tok));
+    }
+
+    function buildPolicyHaystack(p) {
+        if (!p) return '';
+        return normalizeStr([
+            p.cliente,
+            p.apolice,
+            p.tipoSeguro,
+            p.seguradora,
+            p.tag,
+            p.cpf,
+            p.email,
+            p.telefone,
+            p.desc,
+            p.coberturas,
+            p.endereco,
+            p.observacoes,
+            'seguradora',
+            'cliente',
+            'segurado',
+            'apolice',
+            'ramo',
+            'tipo',
+            'auto',
+            'saude',
+            'vida',
+            'residencial',
+            'empresarial'
+        ].join(' '));
+    }
+
+    function matchPolicyTokens(p, tokens) {
+        if (!tokens || tokens.length === 0) return true;
+        const haystack = buildPolicyHaystack(p);
+        return tokens.every((tok) => haystack.includes(tok));
+    }
+
     function highlightAccentInsensitive(text, term) {
         if (!text) return '';
         const safeText = escapeHtml(text);
         if (!term || !term.trim()) return safeText;
         try {
-            const regex = buildAccentInsensitiveRegex(term.trim());
-            if (!regex) return safeText;
+            const rawTokens = term.trim().split(/\s+/).filter(Boolean);
+            const tokens = rawTokens.filter((t) => !SEARCH_STOPWORDS.has(normalizeStr(t)));
+            const activeTokens = tokens.length > 0 ? tokens : rawTokens;
+            if (activeTokens.length === 0) return safeText;
+
+            const patterns = activeTokens.map((tok) => {
+                let p = '';
+                for (let char of tok) {
+                    const lower = char.toLowerCase();
+                    const base = lower.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    const accentMap = {
+                        'a': '[aáàãâäAÁÀÃÂÄ]',
+                        'e': '[eéèêëEÉÈÊË]',
+                        'i': '[iíìîïIÍÌÎÏ]',
+                        'o': '[oóòõôöOÓÒÕÔÖ]',
+                        'u': '[uúùûüUÚÙÛÜ]',
+                        'c': '[cçCÇ]'
+                    };
+                    p += accentMap[base] || escapeRegex(char);
+                }
+                return p;
+            });
+            const regex = new RegExp(`(${patterns.join('|')})`, 'gi');
             return safeText.replace(regex, '<mark>$1</mark>');
         } catch (err) {
             return safeText;
@@ -712,18 +1376,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getFilteredCards(view) {
-        const query = normalizeStr(view.filterText || '');
-        return (view.cards || []).filter((c) => {
-            if (!query) return true;
-            return (
-                normalizeStr(c.title).includes(query) ||
-                normalizeStr(c.cliente).includes(query) ||
-                normalizeStr(c.apolice).includes(query) ||
-                normalizeStr(c.desc).includes(query) ||
-                normalizeStr(c.tag).includes(query) ||
-                normalizeStr(c.assignee).includes(query)
-            );
-        });
+        const raw = (view.filterText || '').trim();
+        if (!raw) return view.cards || [];
+        const tokens = extractSearchTokens(raw);
+        if (tokens.length === 0) return view.cards || [];
+        return (view.cards || []).filter((c) => matchPolicyTokens(c, tokens));
     }
 
     // ========================================================
@@ -1880,44 +2537,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateSearchResults() {
         if (!searchResults || !smartSearchInput) return;
-        const rawInput = smartSearchInput.value.trim();
-        const normInput = normalizeStr(rawInput);
+        const rawInput = smartSearchInput.value;
+        const normInput = normalizeStr(rawInput).trim();
 
         let filteredItems = [];
 
-        // Detecção de busca por apólice: "apolice: claudio", "apólice: cláudio", "APOLICE: CLAUDIO", etc.
-        const isPolicyPrefixed = normInput.startsWith('apolice:');
-        const policyArg = isPolicyPrefixed ? normInput.replace(/^apolice:\s*/, '').trim() : '';
-
+        // Detecção de busca por apólice: "apolice: ...", "apolice ...", "apólice ...", ou apenas "apolice"
+        const isPolicyPrefixed = normInput.startsWith('apolice:') || normInput.startsWith('apolice ') || normInput === 'apolice';
         const isCommandOnly = !isPolicyPrefixed && normInput.startsWith('>');
         const isViewOnly = !isPolicyPrefixed && normInput.startsWith('#');
-        const cleanQuery = isPolicyPrefixed ? policyArg : normInput.replace(/^[>#]/, '').trim();
+
+        let cleanQuery = normInput;
+        if (isPolicyPrefixed) {
+            cleanQuery = normInput.replace(/^apolice:?\s*/, '').trim();
+        } else if (isCommandOnly) {
+            cleanQuery = normInput.replace(/^>\s*/, '').trim();
+        } else if (isViewOnly) {
+            cleanQuery = normInput.replace(/^#\s*/, '').trim();
+        }
+
+        const queryTokens = extractSearchTokens(cleanQuery);
 
         // 1. Apólices & Pessoas (Segurados)
         if (!isCommandOnly && !isViewOnly) {
             INITIAL_POLICIES.forEach((p) => {
-                const normCliente = normalizeStr(p.cliente);
-                const normApolice = normalizeStr(p.apolice);
-                const normTipo = normalizeStr(p.tipoSeguro);
-                const normSeguradora = normalizeStr(p.seguradora);
-                const normCpf = normalizeStr(p.cpf);
-                const normTag = normalizeStr(p.tag);
-
-                const match = !cleanQuery ||
-                    normCliente.includes(cleanQuery) ||
-                    normApolice.includes(cleanQuery) ||
-                    normTipo.includes(cleanQuery) ||
-                    normSeguradora.includes(cleanQuery) ||
-                    normCpf.includes(cleanQuery) ||
-                    normTag.includes(cleanQuery);
+                const match = queryTokens.length === 0
+                    ? (isPolicyPrefixed || !cleanQuery)
+                    : matchPolicyTokens(p, queryTokens);
 
                 if (match) {
                     filteredItems.push({
                         id: `pol-result-${p.id}`,
                         type: 'policy',
+                        policyData: p,
                         title: `Apólice ${p.apolice} • ${p.cliente}`,
+                        subtitle: `${p.tipoSeguro} • ${p.seguradora}`,
                         icon: 'badge',
-                        hint: `${p.tipoSeguro} • ${p.seguradora} (Enter para abrir)`,
+                        hint: `${p.seguradora} • ${p.valor}`,
+                        getTabCompletion: (currentInput) => {
+                            const normCur = normalizeStr(currentInput);
+                            const hasPref = normCur.startsWith('apolice:') || normCur.startsWith('apolice ');
+                            const pref = hasPref ? 'apolice: ' : '';
+                            const cleanCur = normCur.replace(/^apolice:?\s*/, '').trim();
+                            const normSeg = normalizeStr(p.seguradora);
+
+                            // Se o usuário digitou parte da seguradora
+                            if (cleanCur && normSeg.startsWith(cleanCur) && cleanCur.length < normSeg.length) {
+                                return `${pref}${p.seguradora} `;
+                            }
+                            // Se já contém a seguradora
+                            if (cleanCur && cleanCur.includes(normSeg)) {
+                                return `${pref}${p.seguradora} ${p.cliente}`;
+                            }
+                            return `${pref}${p.cliente} ${p.seguradora}`;
+                        },
                         action: () => {
                             openCadastroView(p);
                         }
@@ -1926,14 +2599,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 2. Views do Workspace (buscadas tanto em "apolice: ..." quanto na busca geral ou "#...")
+        // 2. Views do Workspace
         if (!isCommandOnly) {
             const matchedViews = availableViews
                 .filter((v) => {
-                    if (!cleanQuery) return isPolicyPrefixed || isViewOnly;
-                    const normTitle = normalizeStr(v.title);
-                    const normId = normalizeStr(v.id);
-                    return normTitle.includes(cleanQuery) || normId.includes(cleanQuery);
+                    if (queryTokens.length === 0) return isPolicyPrefixed || isViewOnly;
+                    const viewHaystack = normalizeStr(`${v.title} ${v.id} ${v.mode || ''}`);
+                    return queryTokens.every((tok) => viewHaystack.includes(tok));
                 })
                 .map((v) => {
                     const isOpen = openViewIds.includes(v.id);
@@ -1950,8 +2622,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         id: v.id,
                         type: 'view',
                         title: `View: ${v.title}`,
+                        subtitle: `Modo ${v.mode || v.type} • ${isOpen ? 'Aberta no workspace' : 'Disponível'}`,
                         icon,
-                        hint: isOpen ? 'Aberta no workspace (Enter para focar)' : 'Fechada (Enter para abrir)',
+                        hint: isOpen ? 'Em foco (Enter)' : 'Abrir view',
+                        getTabCompletion: () => `# ${v.title}`,
                         action: () => {
                             if (!isOpen) {
                                 openView(v.id);
@@ -1967,11 +2641,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 3. Comandos globais
         if (!isPolicyPrefixed && !isViewOnly) {
-            const matchedCommands = commandList.filter((cmd) => {
-                if (!cleanQuery) return true;
-                const normCmd = normalizeStr(cmd.title);
-                return normCmd.includes(cleanQuery);
-            });
+            const matchedCommands = commandList
+                .filter((cmd) => {
+                    if (queryTokens.length === 0) return true;
+                    const cmdHaystack = normalizeStr(`${cmd.title} ${cmd.hint || ''}`);
+                    return queryTokens.every((tok) => cmdHaystack.includes(tok));
+                })
+                .map((cmd) => ({
+                    ...cmd,
+                    subtitle: cmd.hint || 'Comando global',
+                    getTabCompletion: () => `> ${cmd.title}`
+                }));
 
             filteredItems.push(...matchedCommands);
         }
@@ -1991,7 +2671,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentResults.length === 0) {
             searchResults.innerHTML = `
                 <div class="search-no-results">
-                    Nenhum resultado encontrado para "<strong>${escapeHtml(query)}</strong>"
+                    Nenhum resultado encontrado para "<strong>${escapeHtml(query || smartSearchInput?.value || '')}</strong>"
                 </div>
             `;
             return;
@@ -2007,11 +2687,16 @@ document.addEventListener('DOMContentLoaded', () => {
             el.dataset.index = globalIndex;
 
             const highlightedTitle = highlightAccentInsensitive(item.title, query);
+            const highlightedSub = item.subtitle ? highlightAccentInsensitive(item.subtitle, query) : '';
 
             el.innerHTML = `
                 <div class="search-item-icon"><span class="material-symbols-rounded">${item.icon}</span></div>
-                <div class="search-item-title">${highlightedTitle}</div>
+                <div class="search-item-info">
+                    <div class="search-item-title">${highlightedTitle}</div>
+                    ${item.subtitle ? `<div class="search-item-sub">${highlightedSub}</div>` : ''}
+                </div>
                 <span class="search-item-hint">${escapeHtml(item.hint)}</span>
+                <span class="search-item-tab-hint" title="Pressione Tab para autocompletar"><kbd>Tab</kbd></span>
             `;
 
             el.addEventListener('click', () => {
@@ -2031,7 +2716,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (policies.length > 0) {
             const cat = document.createElement('div');
             cat.className = 'search-category-title';
-            cat.textContent = 'Apólices & Cadastros de Segurados';
+            cat.textContent = `Apólices & Segurados (${policies.length})`;
             searchResults.appendChild(cat);
             policies.forEach((p) => searchResults.appendChild(renderItem(p, currentIndex++)));
         }
@@ -2039,7 +2724,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (views.length > 0) {
             const cat = document.createElement('div');
             cat.className = 'search-category-title';
-            cat.textContent = 'Views do Workspace';
+            cat.textContent = `Views do Workspace (${views.length})`;
             searchResults.appendChild(cat);
             views.forEach((v) => searchResults.appendChild(renderItem(v, currentIndex++)));
         }
@@ -2047,7 +2732,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (commands.length > 0) {
             const cat = document.createElement('div');
             cat.className = 'search-category-title';
-            cat.textContent = 'Ações e Comandos';
+            cat.textContent = `Ações e Comandos (${commands.length})`;
             searchResults.appendChild(cat);
             commands.forEach((cmd) => searchResults.appendChild(renderItem(cmd, currentIndex++)));
         }
@@ -2085,6 +2770,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function handleTabCompletion(isShift = false) {
+        if (!smartSearchInput) return;
+        const raw = smartSearchInput.value;
+        const norm = normalizeStr(raw).trim();
+
+        // 1. Preenchimento rápido de prefixos
+        if (!norm || /^ap(o(l(i(c(e)?)?)?)?)?$/i.test(norm)) {
+            smartSearchInput.value = 'apolice: ';
+            smartSearchInput.setSelectionRange('apolice: '.length, 'apolice: '.length);
+            updateSearchResults();
+            return;
+        }
+
+        if (norm === '>') {
+            smartSearchInput.value = '> ';
+            smartSearchInput.setSelectionRange(2, 2);
+            updateSearchResults();
+            return;
+        }
+
+        if (norm === '#') {
+            smartSearchInput.value = '# ';
+            smartSearchInput.setSelectionRange(2, 2);
+            updateSearchResults();
+            return;
+        }
+
+        // 2. Preenchimento baseado no resultado selecionado no dropdown
+        if (currentResults.length === 0) return;
+
+        const curItem = currentResults[selectedIndex];
+        if (!curItem) return;
+
+        const targetText = curItem.getTabCompletion ? curItem.getTabCompletion(raw) : curItem.title;
+        const currentClean = normalizeStr(raw).trim();
+        const targetClean = normalizeStr(targetText).trim();
+
+        if (currentClean === targetClean) {
+            // Já preenchido com o item atual: cicla para o próximo / anterior
+            const nextIdx = isShift
+                ? (selectedIndex - 1 + currentResults.length) % currentResults.length
+                : (selectedIndex + 1) % currentResults.length;
+            selectedIndex = nextIdx;
+            updateSelectedVisual();
+            scrollToSelected();
+            const nextItem = currentResults[selectedIndex];
+            if (nextItem && nextItem.getTabCompletion) {
+                const nextText = nextItem.getTabCompletion(raw);
+                smartSearchInput.value = nextText;
+                smartSearchInput.setSelectionRange(nextText.length, nextText.length);
+                updateSearchResults();
+            }
+        } else {
+            smartSearchInput.value = targetText;
+            smartSearchInput.setSelectionRange(targetText.length, targetText.length);
+            updateSearchResults();
+        }
+    }
+
     if (smartSearchInput) {
         smartSearchInput.addEventListener('focus', () => {
             openSearchDropdown();
@@ -2095,6 +2839,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         smartSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                handleTabCompletion(e.shiftKey);
+                return;
+            }
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 if (currentResults.length > 0) {

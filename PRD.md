@@ -11,11 +11,12 @@ O **Design Pattern Workspace** é um shell de interface web modular, altamente r
 Inspirado nas melhores convenções de Web IDEs (VS Code), navegadores modernos (Arc) e ferramentas de produtividade espacial, o sistema permite trabalhar com múltiplas **Views** simultâneas (tanto do mesmo tipo quanto de tipos diferentes), com redimensionamento dinâmico, reordenação via teclado ou drag-and-drop, sem sobreposição de popups ou modais que quebrem o fluxo operacional.
 
 #### 1.2 Proposta de Valor
-- **Produtividade "Mãos no Teclado"**: Comandos globais acessíveis via Omnibar / Command Palette (`Ctrl + K` / `Ctrl + P`), atalhos `Alt` para troca de foco e movimentação espacial de views, e navegação `↑`/`↓`/`J`/`K` nas listas.
+- **Produtividade "Mãos no Teclado"**: Comandos globais acessíveis via Omnibar / Command Palette (`Ctrl + K` / `Ctrl + P`), autocompletar e ciclagem inteligente com `<kbd>Tab</kbd>`, atalhos `Alt` para troca de foco e movimentação espacial de views, e navegação `↑`/`↓`/`J`/`K` nas listas.
 - **Filosofia Sem Dialogs/Popups**: Eliminação estrita de janelas modais intrusivas. Detalhes e cadastros são renderizados diretamente no espaço de trabalho (em painel lateral de detalhe ou como novas views dedicadas).
 - **Multi-View Flexível**: Suporte a layouts empilhados (*stacked*) e lado a lado (*side-by-side*), com redimensionamento dinâmico entre divisórias e reordenação via drag-and-drop ou atalhos de teclado.
 - **4 Modos de Visualização Intercambiáveis**: Cada view de dados pode alternar dinamicamente entre **Kanban**, **Galeria**, **Tabela** e **Lista & Detalhe (List-Detail)**.
-- **Busca Semântica & Flexível na Omnibar**: Pesquisa tolerante a acentuação e caixa alta/baixa, com prefixos dedicados como `apolice: [nome/número]`, `#` para views e `>` para comandos.
+- **Busca Semântica Cross-Field & Tolerante a Acentos**: Pesquisa multi-token flexível (ex: `"apolice bradesco x roberto"`, `"unimed juliana"`), remoção inteligente de conectores/stopwords, suporte a prefixos dedicados (`apolice:`, `#`, `>`) e autocompletar com <kbd>Tab</kbd>.
+- **Dataset Robusto e Diversificado**: Base rica de 28 apólices fictícias cobrindo 16 seguradoras líderes e 6 ramos distintos (Saúde, Auto, Residencial, Vida, Empresarial e Odonto).
 - **Leveza Extrema**: Desenvolvido integralmente em **Vanilla Web Technologies** (HTML5 semântico, CSS3 moderno com CSS Variables, JavaScript ES6+ puro), com zero dependências externas de runtime.
 
 ---
@@ -110,6 +111,10 @@ Para garantir que o operador realize todo o seu trabalho sem precisar recorrer a
 | Atalho | Contexto | Ação Realizada |
 |---|---|---|
 | <kbd>Ctrl</kbd> + <kbd>K</kbd> ou <kbd>Ctrl</kbd> + <kbd>P</kbd> | Global | Abre/foca a Omnibar de busca inteligente |
+| <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd> | Omnibar | Autocompleta comandos, prefixos (`apolice: `) ou cicla resultados da busca |
+| <kbd>Enter</kbd> | Omnibar | Executa a ação ou abre o cadastro/view selecionada |
+| <kbd>↑</kbd> / <kbd>↓</kbd> | Omnibar | Navega entre os resultados listados na Omnibar |
+| <kbd>Esc</kbd> | Omnibar | Fecha o dropdown de busca e remove o foco |
 | <kbd>Alt</kbd> + <kbd>←</kbd> / <kbd>↑</kbd> | Global | Move a view em foco para a esquerda / cima na ordem do workspace |
 | <kbd>Alt</kbd> + <kbd>→</kbd> / <kbd>↓</kbd> | Global | Move a view em foco para a direita / baixo na ordem do workspace |
 | <kbd>Alt</kbd> + <kbd>[</kbd> | Global | Move o foco para a view anterior |
@@ -119,26 +124,49 @@ Para garantir que o operador realize todo o seu trabalho sem precisar recorrer a
 | <kbd>Alt</kbd> + <kbd>L</kbd> | Global | Alterna o layout do workspace (Empilhado vs Lado a Lado) |
 | <kbd>↑</kbd> / <kbd>↓</kbd> ou <kbd>K</kbd> / <kbd>J</kbd> | Lista & Detalhes | Alterna entre apólices na lista e atualiza detalhes em tempo real |
 | <kbd>Enter</kbd> | Lista & Detalhes | Abre a apólice selecionada como uma nova view no workspace |
-| <kbd>Esc</kbd> | Omnibar | Fecha o dropdown de busca e remove o foco |
 
 ---
 
-#### 2.5 Omnibar & Mecanismo de Busca Insensível a Acentos e Caixa
+#### 2.5 Omnibar & Motor de Busca Multi-Token Inteligente
 
-A Omnibar superior (`#smartSearchBar`) possui normalização NFD (`normalizeStr`) e expressões regulares dinâmicas para busca tolerante a acentos e maiúsculas/minúsculas:
+A Omnibar superior (`#smartSearchBar`) implementa um motor de busca semântica multi-token flexível, tolerante a acentuação e variações de caixa:
 
-- **Busca por Apólice / Pessoa (`apolice: [consulta]`)**:
-  - Suporta qualquer variação: `apolice: claudio`, `apólice: cláudio`, `APOLICE: CLAUDIO`, `apolice: auto`, `apolice: 2024`.
-  - Retorna cadastros de pessoas e apólices, além de views do workspace que contenham o termo.
+- **Busca Cross-Field ("Seguradora x Pessoa")**:
+  - Permite cruzar campos independentes na mesma consulta (ex: `"apolice: bradesco roberto"`, `"unimed juliana"`, `"amil saude carlos"`, `"porto auto claudio"`).
+  - Um *haystack* unificado consolida cliente, seguradora, ramo, número de apólice, CPF, e-mail e localização.
+- **Filtro de Conectores e Stopwords**:
+  - Remove automaticamente palavras de conexão e separadores comuns em português (`de`, `do`, `da`, `dos`, `das`, `e`, `em`, `no`, `na`, `com`, `x`, `vs`).
+  - Consultas como `"apolice seguradora bradesco x roberto"` ou `"amil com carlos"` funcionam com 100% de precisão.
+- **Autocompletar e Ciclagem com <kbd>Tab</kbd>**:
+  - **Expansão de Prefixos**: Digitar `ap` ou `apo` + <kbd>Tab</kbd> autocompleta para `"apolice: "`. Digitar `>` ou `#` + <kbd>Tab</kbd> adiciona o espaço delimitador.
+  - **Autocompletar de Seguradora e Cliente**: Ao digitar parte do nome da seguradora ou cliente, pressionar <kbd>Tab</kbd> preenche o termo no campo de busca.
+  - **Ciclagem de Candidatos**: Pressionar <kbd>Tab</kbd> repetidamente (ou <kbd>Shift</kbd> + <kbd>Tab</kbd> para voltar) navega pelos resultados correspondentes, preenchendo o termo da apólice no input sem perder o foco de digitação.
 - **Prefixos Operacionais**:
+  - `apolice:` ou `apólice:` : Busca direcionada no catálogo de apólices e segurados.
   - `>` : Filtra exclusivamente comandos do workspace (layout, criação de views, fechamento, etc.).
-  - `#` : Filtra exclusivamente views disponíveis no explorador.
+  - `#` : Filtra exclusivamente views abertas ou disponíveis no explorador.
   - Texto livre: Executa busca híbrida unificada entre Apólices, Views e Comandos.
-- **Realce Tipográfico**: Os caracteres correspondentes são destacados com tags `<mark>` preservando a acentuação e capitalização originais do texto.
+- **Realce Tipográfico Multi-Token**: Todas as palavras da consulta são realçadas simultaneamente com tags `<mark>`, preservando acentos e capitalização originais.
 
 ---
 
-#### 2.6 Gerenciamento e Redimensionamento de Espaço
+#### 2.6 Base de Dados Fictícia de Demonstração (Dataset Mock)
+
+Para testes analíticos realistas e validação de buscas cruzadas em escala, o sistema conta com uma base em memória de **28 apólices completas**:
+
+- **16 Seguradoras Líderes de Mercado**: Unimed, Bradesco Seguros, Amil Saúde, Porto Seguro, SulAmérica, Allianz, Tokio Marine, Notredame Intermédica, Azul Seguros, Mapfre, Sompo Seguros, Zurich, Liberty Seguros, HDI Seguros, Omint e Care Plus.
+- **6 Ramos de Cobertura**:
+  - *Saúde*: Planos individuais e coletivos corporativos.
+  - *Automóvel*: Cobertura integral, terceiros, frotas e motocicletas.
+  - *Residencial*: Incêndio, roubo, danos elétricos e responsabilidade civil.
+  - *Vida*: Individual, familiar, acidentes pessoais e resgatável.
+  - *Empresarial*: Patrimonial, multirrisco e D&O corporativo.
+  - *Odontológico*: Planos executivos e familiares.
+- **Diversidade Cadastral**: Cobertura de múltiplos estados e capitais (SP, RJ, MG, RS, PR, BA, DF, etc.), com dados completos de CPF, prêmios, franquias, prazos de vigência e histórico de sinistros.
+
+---
+
+#### 2.7 Gerenciamento e Redimensionamento de Espaço
 
 - **Redimensionamento Dinâmico de Views**: Divisórias interativas (`.section-divider`) calculam o *flex-ratio* relativo de views vizinhas com limite de segurança de 50px.
 - **Redimensionamento do Menu Lateral**: Alça vertical arrastável com persistência dinâmica de `--aside-width`.
@@ -163,11 +191,14 @@ A Omnibar superior (`#smartSearchBar`) possui normalização NFD (`normalizeStr`
 | **Views** | Reordenação via Teclado | ✅ Concluído | `Alt + ←` / `Alt + →` move a view ativa para antes/depois |
 | **Views** | Ciclo de Foco via Teclado | ✅ Concluído | `Alt + [` / `Alt + ]` e `Alt + 1..9` para focar views |
 | **Header** | Omnibar com Sintaxe `apolice:` | ✅ Concluído | Busca insensível a acentuação e caixa para pessoas e apólices |
+| **Header** | Autocomplete com <kbd>Tab</kbd> | ✅ Concluído | Expansão de prefixos (`apolice:`, `>`, `#`) e ciclagem de candidatos |
+| **Header** | Busca Multi-Token Cross-Field | ✅ Concluído | Suporte a "seguradora x pessoa" com filtro de stopwords (`x`, `de`, `com`) |
 | **Header** | Comandos de Criação de Views | ✅ Concluído | Atalhos para Kanban, Galeria, Tabela, Lista & Detalhe e Doc |
 | **Aside** | Menu "+ View" com Tipos | ✅ Concluído | Dropdown com ícones e descrições dos 5 tipos de view |
 | **Workspace** | Layout Empilhado vs Lado a Lado | ✅ Concluído | Alternância fluida com redistribuição proporcional |
 | **Workspace** | Redimensionamento por Arraste | ✅ Concluído | Divisores dinâmicos de flex-ratio |
 | **Workspace** | Política Sem Popups/Modais | ✅ Concluído | 100% das interações mantidas no canvas/tiles |
+| **Dados** | Base Expandida (28 Apólices / 16 Cias) | ✅ Concluído | Cobertura de Saúde, Auto, Residencial, Vida, Empresarial e Odonto |
 | **Mobile** | Scroll-Snap e Gesto Swipe | ✅ Concluído | Navegação lateral fluida por toque |
 | **Mobile** | Lista & Detalhe Responsiva | ✅ Concluído | Empilhamento vertical em telas pequenas |
 | **Persistência** | LocalStorage | ⚪ Próxima fase | Salvar views abertas e ordem ao recarregar |
