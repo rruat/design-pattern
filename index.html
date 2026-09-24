@@ -23,7 +23,7 @@
             <div class="header-center">
                 <div id="smartSearchBar" class="smart-search-bar" role="search">
                     <span class="material-symbols-rounded search-icon">search</span>
-                    <input type="text" id="smartSearchInput" class="smart-search-input" placeholder="Buscar seções, comandos ou arquivos... (Ctrl + K)" autocomplete="off" spellcheck="false">
+                    <input type="text" id="smartSearchInput" class="smart-search-input" placeholder="Buscar views, comandos ou apólices (ex: apolice: claudio)... (Ctrl + K)" autocomplete="off" spellcheck="false">
                     <kbd class="search-shortcut-badge">Ctrl K</kbd>
                 </div>
                 <div id="searchDropdown" class="search-dropdown" style="display: none;">
@@ -31,6 +31,7 @@
                     <div class="search-footer">
                         <span><kbd>↑</kbd><kbd>↓</kbd> Navegar</span>
                         <span><kbd>↵</kbd> Selecionar</span>
+                        <span><kbd>Alt</kbd>+<kbd>←</kbd><kbd>→</kbd> Mover View</span>
                         <span><kbd>Esc</kbd> Fechar</span>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
             <div class="nav-logo"><span class="material-symbols-rounded">code_blocks</span></div>
             <div class="nav-divider" aria-hidden="true"></div>
             <ul>
-                <li id="navItemExplorer" class="nav-item is-active" title="Explorador de Seções (Item 1)">
+                <li id="navItemExplorer" class="nav-item is-active" title="Explorador de Views (Item 1)">
                     <span class="material-symbols-rounded">folder_open</span>
                 </li>
                 <li class="nav-item" title="Pesquisa">
@@ -59,14 +60,54 @@
 
         <aside id="mAside">
             <header class="aside-header">
-                <span class="aside-title">SEÇÕES</span>
+                <span class="aside-title">VIEWS</span>
                 <div class="aside-actions">
                     <button id="btnToggleLayout" class="aside-btn" title="Alternar layout (Empilhado / Lado a Lado)" type="button">
                         <span class="material-symbols-rounded">view_agenda</span>
                     </button>
-                    <button id="btnAddSection" class="aside-btn" title="Adicionar nova seção" type="button">
-                        <span class="material-symbols-rounded">add</span>
-                    </button>
+                    <div class="aside-add-wrapper">
+                        <button id="btnAddSection" class="aside-btn" title="Adicionar nova view" type="button">
+                            <span class="material-symbols-rounded">add</span>
+                        </button>
+                        <div id="addViewMenu" class="add-view-dropdown" style="display: none;">
+                            <div class="dropdown-header">Tipo de View</div>
+                            <button class="add-view-opt" data-type="kanban" type="button">
+                                <span class="material-symbols-rounded opt-icon">view_kanban</span>
+                                <div class="opt-info">
+                                    <span class="opt-title">Quadro Kanban</span>
+                                    <span class="opt-desc">Colunas com toggle para Galeria</span>
+                                </div>
+                            </button>
+                            <button class="add-view-opt" data-type="gallery" type="button">
+                                <span class="material-symbols-rounded opt-icon">grid_view</span>
+                                <div class="opt-info">
+                                    <span class="opt-title">Visão Galeria</span>
+                                    <span class="opt-desc">Grade de cards pesquisável</span>
+                                </div>
+                            </button>
+                            <button class="add-view-opt" data-type="table" type="button">
+                                <span class="material-symbols-rounded opt-icon">table_rows</span>
+                                <div class="opt-info">
+                                    <span class="opt-title">Visão Tabela</span>
+                                    <span class="opt-desc">Linhas e colunas com ordenação</span>
+                                </div>
+                            </button>
+                            <button class="add-view-opt" data-type="list-detail" type="button">
+                                <span class="material-symbols-rounded opt-icon">view_sidebar</span>
+                                <div class="opt-info">
+                                    <span class="opt-title">Lista & Detalhes</span>
+                                    <span class="opt-desc">Consulta rápida sem abrir novas views</span>
+                                </div>
+                            </button>
+                            <button class="add-view-opt" data-type="doc" type="button">
+                                <span class="material-symbols-rounded opt-icon">description</span>
+                                <div class="opt-info">
+                                    <span class="opt-title">Documento</span>
+                                    <span class="opt-desc">Anotações e especificações</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
                     <button id="btnCloseAsideMobile" class="aside-btn aside-close-mobile" title="Recolher painel" type="button">
                         <span class="material-symbols-rounded">expand_more</span>
                     </button>
